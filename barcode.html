@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <title>AR.js barcode marker example</title>
+
+        <!-- A-Frame -->
+        <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+
+        <!-- AR.js for A-Frame (rawgit is deprecated — use raw.githack as a simple replacement) -->
+        <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+
+        <!-- Optional: aframe-extras loaders (if you plan to load models). If you don't need it you can remove this line -->
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@master/dist/aframe-extras.loaders.min.js"></script>
+    </head>
+
+    <body style="margin:0; overflow:hidden;">
+        <!-- detectionMode and matrixCodeType allow AR.js to detect barcode markers -->
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 4x4;">
+            <!-- barcode marker with value 99 -->
+            <a-marker type="barcode" value="99">
+                <!-- Add a little transform and lighting so the box looks better -->
+                <a-entity position="0 0 0">
+                    <a-box position="0 0.5 0" depth="0.5" height="0.5" width="0.5" color="yellow" rotation="0 45 0"></a-box>
+                </a-entity>
+            </a-marker>
+
+            <!-- Use a regular camera entity so multiple markers are supported.
+                 If you only need a single marker and want the camera bound to it, you can use <a-marker-camera> instead. -->
+            <a-entity camera></a-entity>
+
+            <!-- Lighting so the object is visible and shaded -->
+            <a-entity light="type: ambient; intensity:0.6"></a-entity>
+            <a-entity light="type: point; intensity:0.8" position="2 4 2"></a-entity>
+        </a-scene>
+    </body>
+</html>
